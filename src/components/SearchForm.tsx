@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 
 interface SearchFormProps {
-  onSearch: () => void;
   isLoading: boolean;
-  registrationNumber: string;
   setRegistrationNumber: (registrationNumber: string) => void;
 }
 
-const SearchForm: React.FC<SearchFormProps> = ({ onSearch, isLoading, registrationNumber, setRegistrationNumber }) => {
-
+const SearchForm: React.FC<SearchFormProps> = ({
+  isLoading,
+  setRegistrationNumber,
+}) => {
+  const [formInput, setFormInput] = useState('');
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch();
+    setRegistrationNumber(formInput);
   };
 
   return (
@@ -20,8 +21,8 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSearch, isLoading, registrati
         type="text"
         className="w-full p-4 mb-4 border border-gray-300 rounded-lg"
         placeholder="Enter registration number"
-        value={registrationNumber}
-        onChange={(e) => setRegistrationNumber(e.target.value)}
+        value={formInput}
+        onChange={(e) => setFormInput(e.target.value)}
         aria-label="Registration Number"
       />
       <button
