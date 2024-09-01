@@ -10,6 +10,7 @@ const SearchForm: React.FC<SearchFormProps> = ({
   setRegistrationNumber,
 }) => {
   const [formInput, setFormInput] = useState('');
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setRegistrationNumber(formInput);

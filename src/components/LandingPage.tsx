@@ -13,9 +13,15 @@ const LandingPage: React.FC = () => {
   } = useCarInfoQuery(registrationNumber);
 
   useEffect(() => {
-    if (registrationNumber) {
-      refetch();
-    }
+    const handler = setTimeout(() => {
+      if (registrationNumber) {
+        refetch();
+      }
+    }, 500); // Debounce for 500ms
+
+    return () => {
+      clearTimeout(handler);
+    };
   }, [registrationNumber, refetch]);
 
   return (
