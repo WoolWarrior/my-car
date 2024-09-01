@@ -1,8 +1,10 @@
 import { CarInfo } from '../types/CarInfo';
 
-const API_KEY = import.meta.env.VITE_API_KEY;
+const API_KEY = import.meta.env.VITE_API_KEY as string;
 
-export const fetchCarInfo = async (registrationNumber: string): Promise<CarInfo> => {
+export const fetchCarInfo = async (
+  registrationNumber: string,
+): Promise<CarInfo> => {
   const response = await fetch('/api/vehicle-enquiry/v1/vehicles', {
     method: 'POST',
     headers: {
@@ -16,5 +18,6 @@ export const fetchCarInfo = async (registrationNumber: string): Promise<CarInfo>
     throw new Error('Failed to fetch car information');
   }
 
-  return response.json();
+  const data = (await response.json()) as CarInfo;
+  return data;
 };

@@ -1,5 +1,5 @@
 /* eslint-disable no-var */
-import '@testing-library/jest-dom'
+import '@testing-library/jest-dom';
 import { expect, test } from 'vitest';
 
 // Declare types for globalThis
